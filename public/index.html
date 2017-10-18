@@ -18,7 +18,7 @@
 	<!-- Make sure theme-color is defined -->
 	<meta name="theme-color" content="#1e1c1c">
 
-	<title>React App</title>
+	<title>Marvel DB</title>
 
 	<!-- Add in some basic styles for our HTML -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
@@ -37,8 +37,8 @@
 		}
 
 		.navbar {
-			background-color: #f30000;
-			color: #ffffff;
+			background-color: #dc2300;
+			color: #fff;
 			min-height: 56px;
 			padding: 0.5rem 1rem;
 		}
@@ -48,7 +48,8 @@
 		}
 
 		.App-header {
-			background-color: #222;
+			background-color: #3a5483;
+			color: #fff;
 			height: 150px;
 			padding: 20px;
 			color: white;
@@ -56,6 +57,68 @@
 
 		.App-intro {
 			font-size: large;
+		}
+
+		.loading-wrapper {
+			margin: 0 auto;
+			margin-top: 5rem;
+			pointer-events: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.loading-wrapper div {
+			text-align: center;
+			color: #636363;
+		}
+
+		.loading-wrapper div>p {
+			font-weight: bold;
+			margin-bottom: 0;
+		}
+
+		.loading-wrapper div>p:last-child {
+			font-weight: normal;
+		}
+
+		.loading-spinner:after {
+			content: "";
+			display: block;
+			margin: 0 auto;
+			margin-bottom: 1.5rem;
+			border: 0.2rem solid #dbdbdb;
+			border-radius: 50%;
+			border-right-color: transparent;
+			border-top-color: transparent;
+			width: 3rem;
+			height: 3rem;
+			border-width: 0.4rem;
+			-webkit-animation: spinAround 500ms infinite linear;
+			animation: spinAround 500ms infinite linear;
+		}
+		/* Animation Frames */
+
+		@-webkit-keyframes spinAround {
+			from {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+			to {
+				-webkit-transform: rotate(359deg);
+				transform: rotate(359deg);
+			}
+		}
+
+		@keyframes spinAround {
+			from {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+			to {
+				-webkit-transform: rotate(359deg);
+				transform: rotate(359deg);
+			}
 		}
 	</style>
 </head>
@@ -72,9 +135,15 @@
 			<div class="App-header">
 				<h2>Home</h2>
 			</div>
-			<p class="App-intro">
-				Loading site...
-			</p>
+			<div class="loading-wrapper">
+				<div>
+					<div class="loading-spinner"></div>
+					<div>
+						<p>Loading Site</p>
+						<p>Please wait...</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script>

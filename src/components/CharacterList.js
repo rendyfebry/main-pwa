@@ -1,43 +1,11 @@
 import React from 'react'
-import Axios from 'axios'
-import md5 from 'md5'
 import { Link } from 'react-router'
 import { Container, Row, Col } from 'reactstrap'
 
-import {
-	API_URL,
-	PUBLIC_KEY,
-	PRIVATE_KEY,
-} from '../shared/config'
-
-
-class CharacterList extends React.Component {
-	state = {
-		characters: [],
-	}
-
-	componentWillMount() {
-		this.fetchCharacters()
-	}
-
-	fetchCharacters = async () => {
-		const ts = Date.now()
-		const hash = md5(ts + PRIVATE_KEY + PUBLIC_KEY)
-
-		const apiUrl = `${API_URL}/v1/public/characters?ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`
-
-		const response = await Axios.get(apiUrl)
-
-		if (response.status === 200) {
-			const characters = response.data.data.results
-			this.setState({ characters })
-		} else {
-			console.error(`Something wrong when fetching data. Status Code ${response.status}, ${response.statusText}`)
-		}
-	}
-
+class CharacterList extends React.PureComponent {
 	renderCharacterList = () => {
-		const characterList = this.state.characters.map((char) => {
+		console.log(this.props)
+		const characterList = this.props.characters.map((char) => {
 			const thumbUrl = `${char.thumbnail.path}.${char.thumbnail.extension}`
 			const thumbUrlHttps = thumbUrl.replace('http://', 'https://')
 

@@ -45,6 +45,7 @@ a:hover {
 
 .App {
 	text-align: center;
+	padding-top: 56px;
 }
 
 .App-logo {
@@ -53,10 +54,10 @@ a:hover {
 }
 
 .App-header {
-	background-color: #222;
+	background-color: #3a5483;
 	height: 150px;
 	padding: 20px;
-	color: white;
+	color: #ffffff;
 }
 
 .App-title {
