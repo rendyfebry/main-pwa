@@ -8,20 +8,31 @@
 
 	<!-- Add manifest -->
 	<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+
 	<!-- Tell the browser it's a PWA -->
 	<meta name="mobile-web-app-capable" content="yes">
+
 	<!-- Tell iOS it's a PWA -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
+
 	<!-- Make sure theme-color is defined -->
 	<meta name="theme-color" content="#1e1c1c">
+
 	<title>React App</title>
 
 	<!-- Add in some basic styles for our HTML -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	 crossorigin="anonymous">
 	<style type="text/css">
 		body {
 			margin: 0;
 			padding: 0;
 			font-family: sans-serif;
+		}
+
+		.navbar {
+			height: 56px;
+			padding: 0.5rem 1rem;
 		}
 
 		.App {
@@ -47,6 +58,9 @@
 	</noscript>
 	<div id="root">
 		<div class="App">
+			<div>
+				<div class="navbar"></div>
+			</div>
 			<div class="App-header">
 				<h2>Home</h2>
 			</div>

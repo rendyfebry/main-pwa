@@ -1,25 +1,22 @@
 import React, { Component } from 'react'
 import { Router, browserHistory, Route, Link } from 'react-router'
+
+import Navbar from './components/Navbar'
 import logo from './logo.svg'
 import './App.css'
 
 const Page = ({ title }) => (
 	<div className="App">
+		<Navbar title={title} />
 		<div className="App-header">
 			<img src={logo} className="App-logo" alt="logo" />
 			<h2>{title}</h2>
 		</div>
+		<br />
+		<br />
+		<br />
 		<p className="App-intro">
-			THis is the {title} page.
-		</p>
-		<p>
-			<Link to="/">Home</Link>
-		</p>
-		<p>
-			<Link to="/about">About</Link>
-		</p>
-		<p>
-			<Link to="/settings">Settings</Link>
+			This is the {title} page.
 		</p>
 	</div>
 )
