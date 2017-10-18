@@ -12,25 +12,34 @@ class MainNavbar extends React.Component {
 		return this.props.location.pathname
 	}
 
+	getLinkClassName = (route) => {
+		const isActive = this.isOnThisRoute(route)
+		const className = isActive ? 'nav-link active' : 'nav-link'
+		return className
+	}
+
 	toggle = () => {
 		this.setState({ isOpen: !this.state.isOpen })
 	}
 
 	isOnThisRoute = route => route === this.currentPath
 
-	getLinkClassName = (route) => {
-		const isActive = this.isOnThisRoute(route)
-		const className = isActive ? `nav-link active` : 'nav-link'
-		return className
-	}
-
 	render() {
 		return (
-			<Navbar light expand="md">
+			<Navbar light fixed="top" expand="md">
 				<NavbarBrand to="/" href="/">Marvel DB</NavbarBrand>
 				<NavbarToggler onClick={this.toggle} aria-label="toggler" />
 				<Collapse isOpen={this.state.isOpen} navbar>
 					<Nav className="ml-auto" navbar>
+						<NavItem>
+							<Link
+								className={this.getLinkClassName('/')}
+								href="/"
+								to="/"
+							>
+								Home
+							</Link>
+						</NavItem>
 						<NavItem>
 							<Link
 								className={this.getLinkClassName('/about')}
@@ -47,15 +56,6 @@ class MainNavbar extends React.Component {
 								to="/characters"
 							>
 								Characters
-							</Link>
-						</NavItem>
-						<NavItem>
-							<Link
-								className={this.getLinkClassName('/settings')}
-								href="/settings"
-								to="/settings"
-							>
-								Settings
 							</Link>
 						</NavItem>
 						<NavItem>
