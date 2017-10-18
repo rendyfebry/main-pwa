@@ -1,6 +1,6 @@
 {
-	"short_name": "Main PWA",
-	"name": "My First Progressive Web App",
+	"short_name": "Marvel DB",
+	"name": "Marvel DB - Companion App",
 	"icons": [
 		{
 			"src": "icon-16x16.png",
@@ -24,7 +24,7 @@
 		}
 	],
 	"start_url": "/",
-	"background_color": "#ffffff",
-	"theme_color": "#1e1c1c",
+	"background_color": "#d00000",
+	"theme_color": "#d00000",
 	"display": "standalone"
 }
