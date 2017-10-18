@@ -39,10 +39,12 @@ class CharacterList extends React.Component {
 	renderCharacterList = () => {
 		const characterList = this.state.characters.map((char) => {
 			const thumbUrl = `${char.thumbnail.path}.${char.thumbnail.extension}`
+			const thumbUrlHttps = thumbUrl.replace('http://', 'https://')
+
 			const thumbTitle = `thumbnail_${char.name}_${char.id}`
 			const thumbnail = (
 				<img
-					src={thumbUrl}
+					src={thumbUrlHttps}
 					alt={thumbTitle}
 					className="img-responsive"
 				/>
