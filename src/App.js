@@ -1,49 +1,18 @@
-import React, { Component } from 'react'
-import { Router, browserHistory, Route, Link } from 'react-router'
+import React from 'react'
+import { Router, browserHistory, Route } from 'react-router'
 
-import Navbar from './components/Navbar'
-import logo from './logo.svg'
-import './App.css'
+import HomePage from './pages/HomePage'
+import AboutPage from './pages/AboutPage'
+import SettingsPage from './pages/SettingsPage'
+import CharactersPage from './pages/CharactersPage'
 
-const Page = ({ title }) => (
-	<div className="App">
-		<Navbar title={title} />
-		<div className="App-header">
-			<img src={logo} className="App-logo" alt="logo" />
-			<h2>{title}</h2>
-		</div>
-		<br />
-		<br />
-		<br />
-		<p className="App-intro">
-			This is the {title} page.
-		</p>
-	</div>
+const App = () => (
+	<Router history={browserHistory}>
+		<Route path="/" component={HomePage} />
+		<Route path="/about" component={AboutPage} />
+		<Route path="/characters" component={CharactersPage} />
+		<Route path="/settings" component={SettingsPage} />
+	</Router>
 )
-
-
-const Home = () => (
-	<Page title="Home" />
-)
-
-const About = () => (
-	<Page title="About" />
-)
-
-const Settings = () => (
-	<Page title="Settings" />
-)
-
-class App extends Component {
-	render() {
-		return (
-			<Router history={browserHistory}>
-				<Route path="/" component={Home} />
-				<Route path="/about" component={About} />
-				<Route path="/settings" component={Settings} />
-			</Router>
-		)
-	}
-}
 
 export default App
