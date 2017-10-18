@@ -4,7 +4,6 @@ import { Container, Row, Col } from 'reactstrap'
 
 class CharacterList extends React.PureComponent {
 	renderCharacterList = () => {
-		console.log(this.props)
 		const characterList = this.props.characters.map((char) => {
 			const thumbUrl = `${char.thumbnail.path}.${char.thumbnail.extension}`
 			const thumbUrlHttps = thumbUrl.replace('http://', 'https://')
@@ -34,7 +33,7 @@ class CharacterList extends React.PureComponent {
 
 	render() {
 		return (
-			<Container>
+			<Container className="container_main">
 				<Row>
 					{this.renderCharacterList()}
 				</Row>

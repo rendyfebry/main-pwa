@@ -1,11 +1,9 @@
 import React from 'react'
-import Axios from 'axios'
 import md5 from 'md5'
 
 import Page from './Page'
 import Loader from '../components/Loader'
 import CharacterList from '../components/CharacterList'
-import './CharactersPage.css'
 
 import {
 	API_URL,
@@ -15,6 +13,7 @@ import {
 
 class CharactersPage extends React.Component {
 	state = {
+		isLoading: true,
 		characters: [],
 	}
 
@@ -26,23 +25,27 @@ class CharactersPage extends React.Component {
 		const ts = Date.now()
 		const hash = md5(ts + PRIVATE_KEY + PUBLIC_KEY)
 
-		const apiUrl = `${API_URL}/v1/public/characters?ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`
-		// https://gateway.marvel.com:443/v1/public/characters?orderBy=name&limit=25&offset=0&apikey=b78e32405c03d7cfd6d91633cb7f6a13
+		const apiUrl = `${API_URL}/v1/public/characters?orderBy=name&limit=100&offset=0&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`
 
-		const response = await Axios.get(apiUrl)
-
-		if (response.status === 200) {
-			const characters = response.data.data.results
-			this.setState({ characters })
-		} else {
-			console.error(`Something wrong when fetching data. Status Code ${response.status}, ${response.statusText}`)
-		}
+		fetch(apiUrl)
+			.then(response => response.json())
+			.then((responJSON) => {
+				if (responJSON.code === 200) {
+					const characters = responJSON.data.results
+					this.setState({
+						isLoading: false,
+						characters,
+					})
+				} else {
+					console.error(`Something wrong when fetching data. Status Code ${responJSON.code}, ${responJSON.status}`)
+				}
+			})
 	}
 
 	renderMainContent = () => {
-		const mainContent = this.state.characters.length
-			? <CharacterList characters={this.state.characters} />
-			: <Loader title="Fetch Character List" description="Please wait..." />
+		const mainContent = this.state.isLoading
+			? <Loader title="Fetch Character List" description="Please wait..." />
+			: <CharacterList characters={this.state.characters} />
 		return mainContent
 	}
 

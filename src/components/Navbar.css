@@ -1,16 +1,27 @@
 .navbar {
-	background-color: #dc2300;
+	background-color: #000000;
 	color: #ffffff;
 }
 
-.navbar-light .navbar-brand {
+.navbar-dark .navbar-brand {
+	background-color: #f50000;
 	color: rgba(255, 255, 255, 0.9);
+	font-weight: bold;
+	text-transform: uppercase;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 }
 
-.navbar-light .navbar-nav .nav-link {
+.navbar-dark .navbar-nav .nav-link {
 	color: rgba(255, 255, 255, 0.5);
 }
 
-.navbar-light .navbar-nav .nav-link.active {
+.navbar-dark .navbar-nav .nav-link.active {
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 	color: rgba(255, 255, 255, 0.9);
+}
+
+.navbar-dark .navbar-toggler {
+	border: 0;
 }

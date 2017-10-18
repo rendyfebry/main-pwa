@@ -26,7 +26,7 @@ class MainNavbar extends React.Component {
 
 	render() {
 		return (
-			<Navbar light fixed="top" expand="md">
+			<Navbar dark fixed="top" expand="md">
 				<NavbarBrand to="/" href="/">Marvel DB</NavbarBrand>
 				<NavbarToggler onClick={this.toggle} aria-label="toggler" />
 				<Collapse isOpen={this.state.isOpen} navbar>
@@ -73,6 +73,4 @@ class MainNavbar extends React.Component {
 	}
 }
 
-const MainNavbarWithRouter = withRouter(MainNavbar)
-
-export default MainNavbarWithRouter
+export default withRouter(MainNavbar)

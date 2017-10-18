@@ -30,6 +30,23 @@
 			font-family: sans-serif;
 		}
 
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p {
+			margin: 0;
+		}
+
+		ul,
+		li {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+
 		a,
 		a:link,
 		a:visited {
@@ -37,8 +54,8 @@
 		}
 
 		.navbar {
-			background-color: #dc2300;
-			color: #fff;
+			background-color: #000000;
+			color: #ffffff;
 			min-height: 56px;
 			padding: 0.5rem 1rem;
 		}
@@ -48,11 +65,17 @@
 		}
 
 		.App-header {
-			background-color: #3a5483;
-			color: #fff;
-			height: 150px;
+			background-color: #fff;
+			height: auto;
 			padding: 20px;
-			color: white;
+			color: #d00000;
+			box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+			-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+			position: fixed;
+			left: 0;
+			right: 0;
+			z-index: 2;
+			top: 56px;
 		}
 
 		.App-intro {
@@ -135,7 +158,7 @@
 			<div class="App-header">
 				<h2>Home</h2>
 			</div>
-			<div class="loading-wrapper">
+			<div class="loading-wrapper" style="margin-top: 107px">
 				<div>
 					<div class="loading-spinner"></div>
 					<div>
@@ -147,21 +170,21 @@
 		</div>
 	</div>
 	<script>
-		if ('serviceWorker' in navigator) {
-			window.addEventListener('load', function () {
-				navigator.serviceWorker.register('service-worker.js').then(function (registration) {
-					// Registration was successful
-					console.log('ServiceWorker registration successful with scope: ', registration.scope)
-				}, function (err) {
-					// registration failed :(
-					console.log('ServiceWorker registration failed: ', err)
-				}).catch(function (err) {
-					console.log(err)
-				})
-			})
-		} else {
-			console.log('service worker is not supported');
-		}
+		// if ('serviceWorker' in navigator) {
+		// 	window.addEventListener('load', function () {
+		// 		navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+		// 			// Registration was successful
+		// 			console.log('ServiceWorker registration successfull')
+		// 		}, function (err) {
+		// 			// registration failed :(
+		// 			console.log('ServiceWorker registration failed - ', err)
+		// 		}).catch(function (err) {
+		// 			console.log(err)
+		// 		})
+		// 	})
+		// } else {
+		// 	console.log('service worker is not supported')
+		// }
 	</script>
 </body>
 
