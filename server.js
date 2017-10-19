@@ -22,17 +22,17 @@ const COLUMNS = [
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'))
+	app.use(express.static('build'))
 }
 
 app.get('/api/food', (req, res) => {
-	const param = req.query.q;
+	const param = req.query.q
 
 	if (!param) {
 		res.json({
 			error: 'Missing required parameter `q`',
-		});
-		return;
+		})
+		return
 	}
 
 	// WARNING: Not for production use! The following statement
@@ -41,7 +41,7 @@ app.get('/api/food', (req, res) => {
 		select ${COLUMNS.join(', ')} from entries
 		where description like '%${param}%'
 		limit 100
-	`);
+	`)
 
 	if (r[0]) {
 		res.json(
@@ -67,8 +67,8 @@ app.get('/api/food', (req, res) => {
 })
 
 if (process.env.NODE_ENV === 'production') {
-	app.get(/(.*)/, function (req, res) {
-		filePath = __dirname + '/client/build/index.html'
+	app.get(/(.*)/, (req, res) => {
+		filePath = __dirname + '/build/index.html'
 		res.sendFile(filePath)
 	})
 }
