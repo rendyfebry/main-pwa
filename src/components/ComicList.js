@@ -9,7 +9,7 @@ class ComicList extends React.PureComponent {
 		const comicList = this.props.issues.map((issue) => {
 			const placeholderUrl = 'https://comicvine.gamespot.com/api/image/scale_avatar/1-male-good-large.jpg'
 
-			const thumbUrl = issue.image ? issue.image.medium_url : ''
+			const thumbUrl = issue.image ? issue.image.medium_url : placeholderUrl
 			const thumbTitle = `thumbnail_${issue.name}_${issue.id}`
 
 			const charDetailUrl = `/issues/${issue.id}`
