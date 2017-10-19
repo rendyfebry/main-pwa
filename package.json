@@ -4,11 +4,12 @@
 	"private": true,
 	"proxy": "http://localhost:3001/",
 	"scripts": {
-		"start": "concurrently \"npm run server\" \"npm run client\"",
-		"server": "nodemon server.js",
-		"client": "react-scripts start",
-		"start:dev": "react-scripts start",
-		"build": "react-scripts build",
+		"prestart": "npm run client:build",
+		"start": "NODE_ENV=production node server.js",
+		"start:dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+		"client:dev": "react-scripts start",
+		"client:build": "react-scripts build",
+		"server:dev": "nodemon server.js",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
 		"lint": "eslint src"
