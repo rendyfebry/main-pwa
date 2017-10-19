@@ -52,8 +52,8 @@ class MainNavbar extends React.Component {
 						<NavItem>
 							<Link
 								className={this.getLinkClassName('/characters')}
-								href="/characters/page/1"
-								to="/characters/page/1"
+								href="/characters"
+								to="/characters"
 							>
 								Characters
 							</Link>

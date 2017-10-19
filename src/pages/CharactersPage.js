@@ -18,21 +18,17 @@ class CharactersPage extends React.Component {
 		isLoading: true,
 		characters: [],
 		currentPage: 1,
-		limitPerPage: 50,
+		limitPerPage: 25,
 		sortBy: 'name',
 	}
 
 	componentWillMount() {
-		let currentPage
-
-		if (this.props.params.pageId) {
-			currentPage = parseInt(this.props.params.pageId, 10) || 1
-		} else {
-			currentPage = 1
-		}
+		const currentPage = parseInt(this.props.location.query.page, 10) || 1
+		const limitPerPage = parseInt(this.props.location.query.limit, 10) || 25
 
 		this.setState({
-			currentPage
+			currentPage,
+			limitPerPage,
 		}, () => this.fetchCharacterListPage(currentPage))
 	}
 
@@ -57,7 +53,11 @@ class CharactersPage extends React.Component {
 			currentPage: newPage,
 			isLoading: true,
 		}, () => {
-			browserHistory.push(`/characters/page/${newPage}`)
+			let newUrl = `/characters`
+			newUrl += `?page=${this.state.currentPage}`
+			newUrl += `&limit=${this.state.limitPerPage}`
+
+			browserHistory.push(newUrl)
 			this.fetchCharacters({
 				page: this.state.currentPage,
 				limit: this.state.limitPerPage,
