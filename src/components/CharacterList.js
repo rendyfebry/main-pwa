@@ -1,7 +1,8 @@
 import React from 'react'
 import LazyLoad from 'react-lazyload'
 import { Link } from 'react-router'
-import { Container, Row, Col } from 'reactstrap'
+import { Col } from 'reactstrap'
+import './CharacterList.css'
 
 class CharacterList extends React.PureComponent {
 	renderCharacterList = () => {
@@ -23,9 +24,9 @@ class CharacterList extends React.PureComponent {
 			const charDetailUrl = `/characters/${char.id}`
 
 			return (
-				<Col key={char.id} xs={12} sm={6} md={4}>
+				<Col key={char.id} xs={12} sm={6} md={4} className="CharacterListItem">
 					{thumbnail}
-					<p>
+					<p className="text-center">
 						<Link href={charDetailUrl} to={charDetailUrl}>{char.name}</Link>
 					</p>
 				</Col>
@@ -35,13 +36,7 @@ class CharacterList extends React.PureComponent {
 	}
 
 	render() {
-		return (
-			<Container className="container_main">
-				<Row>
-					{this.renderCharacterList()}
-				</Row>
-			</Container>
-		)
+		return this.renderCharacterList()
 	}
 }
 

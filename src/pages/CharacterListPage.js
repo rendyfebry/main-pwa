@@ -3,6 +3,7 @@ import md5 from 'md5'
 import { Container, Row, Col, Button } from 'reactstrap'
 import { browserHistory, withRouter } from 'react-router'
 
+import './CharacterListPage.css'
 import Page from './Page'
 import Loader from '../components/Loader'
 import CharacterList from '../components/CharacterList'
@@ -13,7 +14,7 @@ import {
 	PRIVATE_KEY,
 } from '../shared/config'
 
-class CharactersPage extends React.Component {
+class CharacterListPage extends React.Component {
 	state = {
 		isLoading: true,
 		characters: [],
@@ -94,11 +95,28 @@ class CharactersPage extends React.Component {
 			})
 	}
 
-	renderMainContent = () => {
-		const mainContent = this.state.isLoading
-			? <Loader title="Fetch Character List" description="Please wait..." />
-			: <CharacterList characters={this.state.characters} />
-		return mainContent
+	renderLoaderComponent = () => {
+		let loaderComponent = null
+
+		if (this.state.isLoading) {
+			loaderComponent = this.state.characters.length
+				? <Loader />
+				: <Loader title="Fetch Character List" description="Please wait..." />
+		}
+		return loaderComponent
+	}
+
+	renderPaginationComponent = () => {
+		let paginationComponent = null
+		if (this.state.characters.length) {
+			paginationComponent = (
+				<Col>
+					<Button onClick={this.handlePrevClick}>Prev</Button>
+					<Button onClick={this.handleNextClick}>Next</Button>
+				</Col>
+			)
+		}
+		return paginationComponent
 	}
 
 	render() {
@@ -107,13 +125,19 @@ class CharactersPage extends React.Component {
 				<div className="App-header">
 					<h2>Characters</h2>
 				</div>
-				{this.renderMainContent()}
-				<Container>
+				<Container className="container_main">
+					<Row>
+						<CharacterList characters={this.state.characters} />
+					</Row>
 					<Row>
 						<Col>
-							<Button onClick={this.handlePrevClick}>Prev</Button>
-							<Button onClick={this.handleNextClick}>Next</Button>
+							{this.renderLoaderComponent()}
 						</Col>
+					</Row>
+				</Container>
+				<Container>
+					<Row>
+						{this.renderPaginationComponent()}
 					</Row>
 				</Container>
 			</Page >
@@ -121,4 +145,4 @@ class CharactersPage extends React.Component {
 	}
 }
 
-export default withRouter(CharactersPage)
+export default withRouter(CharacterListPage)

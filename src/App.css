@@ -1,3 +1,19 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+}
+
 .hidden {
 	display: none !important;
 }
@@ -14,6 +30,19 @@
 	pointer-events: none;
 }
 
+ul,
+li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+a,
+a:link,
+a:visited {
+	color: #337ab7;
+}
+
 a,
 a:link,
 a:visited {
@@ -28,7 +57,7 @@ a:hover {
 
 .App {
 	text-align: center;
-	padding-top: 130px;
+	padding-top: 110px;
 }
 
 .App-logo {
@@ -39,7 +68,7 @@ a:hover {
 .App-header {
 	background-color: #fff;
 	height: auto;
-	padding: 20px;
+	padding: 10px 20px;
 	color: #d00000;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
 	-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);

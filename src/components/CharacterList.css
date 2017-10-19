@@ -1,0 +1,12 @@
+.CharacterListItem {
+	margin-bottom: 1.5rem;
+}
+
+.CharacterListItem img {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.CharacterListItem p {
+	margin-top: 0.5rem;
+}
