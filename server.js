@@ -1,3 +1,4 @@
+const compression = require('compression')
 const express = require('express')
 const path = require('path')
 const fetch = require('node-fetch')
@@ -8,6 +9,7 @@ const API_KEY = 'e47ace99bf094a1a4828ab704205d92a7eb6dfc5'
 const app = express()
 
 app.set('port', (process.env.PORT || 3001))
+app.use(compression())
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
