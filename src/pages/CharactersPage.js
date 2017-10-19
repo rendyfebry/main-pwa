@@ -18,14 +18,21 @@ class CharactersPage extends React.Component {
 	}
 
 	componentWillMount() {
-		this.fetchCharacters()
+		this.fetchCharacters(1, 50, 'name')
 	}
 
-	fetchCharacters = async () => {
+	fetchCharacters = async (page, limit, sort) => {
 		const ts = Date.now()
 		const hash = md5(ts + PRIVATE_KEY + PUBLIC_KEY)
+		const offset = (page - 1) * limit
 
-		const apiUrl = `${API_URL}/v1/public/characters?orderBy=name&limit=100&offset=0&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`
+		let apiUrl = `${API_URL}/v1/public/characters`
+		apiUrl += `?orderBy=${sort}`
+		apiUrl += `&limit=${limit}`
+		apiUrl += `&offset=${offset}`
+		apiUrl += `&ts=${ts}`
+		apiUrl += `&apikey=${PUBLIC_KEY}`
+		apiUrl += `&hash=${hash}`
 
 		fetch(apiUrl)
 			.then(response => response.json())
