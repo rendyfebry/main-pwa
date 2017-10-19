@@ -54,7 +54,7 @@ class ComicListPage extends React.Component {
 			currentPage: newPage,
 			isLoading: true,
 		}, () => {
-			let newUrl = `/comics`
+			let newUrl = '/comics'
 			newUrl += `?page=${this.state.currentPage}`
 			newUrl += `&limit=${this.state.limitPerPage}`
 
@@ -83,8 +83,6 @@ class ComicListPage extends React.Component {
 		fetch(apiUrl)
 			.then(response => response.json())
 			.then((responJSON) => {
-				console.log(responJSON)
-
 				if (responJSON.code === 200) {
 					const comics = responJSON.data.results
 					this.setState({

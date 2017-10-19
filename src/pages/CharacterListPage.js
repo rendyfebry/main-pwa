@@ -57,7 +57,7 @@ class CharacterListPage extends React.Component {
 			currentPage: newPage,
 			isLoading: true,
 		}, () => {
-			let newUrl = `/characters`
+			let newUrl = '/characters'
 			newUrl += `?page=${this.state.currentPage}`
 			newUrl += `&limit=${this.state.limitPerPage}`
 
@@ -73,6 +73,7 @@ class CharacterListPage extends React.Component {
 	fetchFoods = async () => {
 		fetch('/api/food?q=ham')
 			.then(response => response.json())
+			// eslint-disable-next-line no-console
 			.then(responseJSON => console.log(responseJSON))
 	}
 
