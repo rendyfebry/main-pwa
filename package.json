@@ -2,6 +2,9 @@
 	"name": "main-pwa",
 	"version": "0.1.0",
 	"private": true,
+	"engines": {
+		"node": ">=0.10.3 <0.12"
+	},
 	"proxy": "http://localhost:3001/",
 	"scripts": {
 		"prestart": "npm run client:build",
