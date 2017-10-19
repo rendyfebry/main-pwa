@@ -1,4 +1,5 @@
 import React from 'react'
+import LazyLoad from 'react-lazyload'
 import { Link } from 'react-router'
 import { Container, Row, Col } from 'reactstrap'
 
@@ -10,11 +11,13 @@ class CharacterList extends React.PureComponent {
 
 			const thumbTitle = `thumbnail_${char.name}_${char.id}`
 			const thumbnail = (
-				<img
-					src={thumbUrlHttps}
-					alt={thumbTitle}
-					className="img-responsive"
-				/>
+				<LazyLoad height={200} once>
+					<img
+						src={thumbUrlHttps}
+						alt={thumbTitle}
+						className="img-responsive"
+					/>
+				</LazyLoad>
 			)
 
 			const charDetailUrl = `/characters/${char.id}`
