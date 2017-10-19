@@ -15,13 +15,20 @@ class CharactersPage extends React.Component {
 	state = {
 		isLoading: true,
 		characters: [],
+		currentPage: 1,
+		limitPerPage: 50,
+		sortBy: 'name',
 	}
 
 	componentWillMount() {
-		this.fetchCharacters(1, 50, 'name')
+		this.fetchCharacters({
+			page: this.state.currentPage,
+			limit: this.state.limitPerPage,
+			sort: this.state.sortBy,
+		})
 	}
 
-	fetchCharacters = async (page, limit, sort) => {
+	fetchCharacters = async ({ page, limit, sort }) => {
 		const ts = Date.now()
 		const hash = md5(ts + PRIVATE_KEY + PUBLIC_KEY)
 		const offset = (page - 1) * limit
