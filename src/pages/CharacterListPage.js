@@ -30,7 +30,10 @@ class CharacterListPage extends React.Component {
 		this.setState({
 			currentPage,
 			limitPerPage,
-		}, () => this.fetchCharacterListPage(currentPage))
+		}, () => {
+			this.fetchCharacterListPage(currentPage)
+			this.fetchFoods()
+		})
 	}
 
 	handlePrevClick = () => {
@@ -65,6 +68,12 @@ class CharacterListPage extends React.Component {
 				sort: this.state.sortBy,
 			})
 		})
+	}
+
+	fetchFoods = async () => {
+		fetch('/api/food?q=ham')
+			.then(response => response.json())
+			.then(responseJSON => console.log(responseJSON))
 	}
 
 	fetchCharacters = async ({ page, limit, sort }) => {
