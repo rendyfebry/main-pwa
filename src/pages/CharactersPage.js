@@ -1,5 +1,6 @@
 import React from 'react'
 import md5 from 'md5'
+import { Container, Row, Col, Button } from 'reactstrap'
 
 import Page from './Page'
 import Loader from '../components/Loader'
@@ -21,10 +22,35 @@ class CharactersPage extends React.Component {
 	}
 
 	componentWillMount() {
-		this.fetchCharacters({
-			page: this.state.currentPage,
-			limit: this.state.limitPerPage,
-			sort: this.state.sortBy,
+		this.changePage(1)
+	}
+
+	handlePrevClick = () => {
+		let newPage
+		if (this.state.currentPage <= 1) {
+			newPage = 1
+		} else {
+			newPage = this.state.currentPage - 1
+		}
+
+		return this.changePage(newPage)
+	}
+
+	handleNextClick = () => {
+		const newPage = this.state.currentPage + 1
+		return this.changePage(newPage)
+	}
+
+	changePage = (newPage) => {
+		this.setState({
+			currentPage: newPage,
+			isLoading: true,
+		}, () => {
+			this.fetchCharacters({
+				page: this.state.currentPage,
+				limit: this.state.limitPerPage,
+				sort: this.state.sortBy,
+			})
 		})
 	}
 
@@ -70,6 +96,14 @@ class CharactersPage extends React.Component {
 					<h2>Characters</h2>
 				</div>
 				{this.renderMainContent()}
+				<Container>
+					<Row>
+						<Col>
+							<Button onClick={this.handlePrevClick}>Prev</Button>
+							<Button onClick={this.handleNextClick}>Next</Button>
+						</Col>
+					</Row>
+				</Container>
 			</Page >
 		)
 	}
