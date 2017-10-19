@@ -1,30 +1,13 @@
-import {
-	API_URL,
-	API_KEY,
-} from './src/shared/config'
-
 const express = require('express')
-const fs = require('fs')
-const sqlite = require('sql.js')
+const path = require('path')
 const fetch = require('node-fetch')
 
-const filebuffer = fs.readFileSync('db/usda-nnd.sqlite3')
-
-const db = new sqlite.Database(filebuffer)
+const API_URL = 'https://comicvine.gamespot.com'
+const API_KEY = 'e47ace99bf094a1a4828ab704205d92a7eb6dfc5'
 
 const app = express()
 
 app.set('port', (process.env.PORT || 3001))
-
-const COLUMNS = [
-	'carbohydrate_g',
-	'protein_g',
-	'fa_sat_g',
-	'fa_mono_g',
-	'fa_poly_g',
-	'kcal',
-	'description',
-]
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -75,7 +58,7 @@ app.get('/api/issues', (req, res) => {
 
 if (process.env.NODE_ENV === 'production') {
 	app.get(/(.*)/, (req, res) => {
-		filePath = __dirname + '/build/index.html'
+		const filePath = path.join(__dirname, '/build/index.html')
 		res.sendFile(filePath)
 	})
 }
