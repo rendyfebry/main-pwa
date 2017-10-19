@@ -12,6 +12,7 @@ const App = () => (
 		<Route path="/" component={HomePage} />
 		<Route path="/about" component={AboutPage} />
 		<Route path="/characters" component={CharactersPage} />
+		<Route path="/characters/page/:pageId" component={CharactersPage} />
 		<Route path="/characters/:charId" component={CharacterDetailPage} />
 		<Route path="/settings" component={SettingsPage} />
 	</Router>

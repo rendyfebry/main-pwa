@@ -11,7 +11,7 @@ class CharacterList extends React.PureComponent {
 
 			const thumbTitle = `thumbnail_${char.name}_${char.id}`
 			const thumbnail = (
-				<LazyLoad height={200} offset={100} once>
+				<LazyLoad height={200} offset={200} once>
 					<img
 						src={thumbUrlHttps}
 						alt={thumbTitle}

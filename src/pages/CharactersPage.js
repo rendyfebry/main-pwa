@@ -1,6 +1,7 @@
 import React from 'react'
 import md5 from 'md5'
 import { Container, Row, Col, Button } from 'reactstrap'
+import { browserHistory, withRouter } from 'react-router'
 
 import Page from './Page'
 import Loader from '../components/Loader'
@@ -22,7 +23,17 @@ class CharactersPage extends React.Component {
 	}
 
 	componentWillMount() {
-		this.changePage(1)
+		let currentPage
+
+		if (this.props.params.pageId) {
+			currentPage = parseInt(this.props.params.pageId, 10) || 1
+		} else {
+			currentPage = 1
+		}
+
+		this.setState({
+			currentPage
+		}, () => this.fetchCharacterListPage(currentPage))
 	}
 
 	handlePrevClick = () => {
@@ -33,19 +44,20 @@ class CharactersPage extends React.Component {
 			newPage = this.state.currentPage - 1
 		}
 
-		return this.changePage(newPage)
+		return this.fetchCharacterListPage(newPage)
 	}
 
 	handleNextClick = () => {
 		const newPage = this.state.currentPage + 1
-		return this.changePage(newPage)
+		return this.fetchCharacterListPage(newPage)
 	}
 
-	changePage = (newPage) => {
+	fetchCharacterListPage = (newPage) => {
 		this.setState({
 			currentPage: newPage,
 			isLoading: true,
 		}, () => {
+			browserHistory.push(`/characters/page/${newPage}`)
 			this.fetchCharacters({
 				page: this.state.currentPage,
 				limit: this.state.limitPerPage,
@@ -109,4 +121,4 @@ class CharactersPage extends React.Component {
 	}
 }
 
-export default CharactersPage
+export default withRouter(CharactersPage)
