@@ -8,7 +8,6 @@
 	},
 	"proxy": "http://localhost:3001/",
 	"scripts": {
-		"prestart": "npm run client:build",
 		"start": "NODE_ENV=production node server.js",
 		"start:dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
 		"client:dev": "react-scripts start",
