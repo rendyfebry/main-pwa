@@ -6,30 +6,28 @@ import './ComicList.css'
 
 class ComicList extends React.PureComponent {
 	renderComicList = () => {
-		const comicList = this.props.comics.map((char) => {
-			const thumbUrl = `${char.thumbnail.path}.${char.thumbnail.extension}`
-			const thumbUrlHttps = thumbUrl.replace('http://', 'https://')
+		const comicList = this.props.issues.map((issue) => {
+			const placeholderUrl = 'https://comicvine.gamespot.com/api/image/scale_avatar/1-male-good-large.jpg'
 
-			const thumbTitle = `thumbnail_${char.title}_${char.id}`
-			const thumbnail = (
-				<LazyLoad height={200} offset={200} once>
-					<img
-						src={thumbUrlHttps}
-						alt={thumbTitle}
-						className="img-responsive"
-					/>
-				</LazyLoad>
-			)
+			const thumbUrl = issue.image ? issue.image.medium_url : ''
+			const thumbTitle = `thumbnail_${issue.name}_${issue.id}`
 
-			const charDetailUrl = `/comics/${char.id}`
+			const charDetailUrl = `/issues/${issue.id}`
 
 			return (
-				<Col key={char.id} xs={12} sm={6} md={4} className="ComicListItem">
-					{thumbnail}
+				<Col key={issue.id} xs={12} sm={6} md={4} className="ComicListItem">
+					<LazyLoad height={200} offset={200} once>
+						<img
+							src={thumbUrl}
+							alt={thumbTitle}
+							className="img-responsive"
+						/>
+					</LazyLoad>
 					<p className="text-center">
 						<Link href={charDetailUrl} to={charDetailUrl}>
-							{char.title}
+							{issue.name}
 						</Link>
+						{issue.issue_number && ` - #${issue.issue_number}`}
 					</p>
 				</Col>
 			)

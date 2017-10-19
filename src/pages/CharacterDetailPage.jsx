@@ -9,7 +9,7 @@ import CharacterDetail from '../components/CharacterDetail'
 import {
 	PRIVATE_KEY,
 	PUBLIC_KEY,
-	API_URL,
+	API_URL_MARVEL,
 } from '../shared/config'
 
 class CharacterDetailPage extends React.Component {
@@ -26,7 +26,7 @@ class CharacterDetailPage extends React.Component {
 		const ts = Date.now()
 		const hash = md5(ts + PRIVATE_KEY + PUBLIC_KEY)
 
-		const apiUrl = `${API_URL}/v1/public/characters/${charId}?ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`
+		const apiUrl = `${API_URL_MARVEL}/v1/public/characters/${charId}?ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`
 
 		fetch(apiUrl)
 			.then(response => response.json())
