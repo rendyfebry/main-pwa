@@ -2,31 +2,30 @@ import React from 'react'
 import {
 	Container,
 	Row,
-	Col,
-	Pagination,
-	PaginationItem,
-	PaginationLink,
+	Breadcrumb,
+	BreadcrumbItem,
 } from 'reactstrap'
-import { browserHistory, withRouter } from 'react-router'
+import { browserHistory, withRouter, Link } from 'react-router'
 
 import './CharacterListPage.css'
 import Page from './Page'
 import Loader from '../components/Loader'
 import CharacterList from '../components/CharacterList'
+import MainPagination from '../components/MainPagination'
 
 class CharacterListPage extends React.Component {
 	state = {
 		isLoading: true,
 		characters: [],
 		currentPage: 1,
-		limitPerPage: 25,
+		limitPerPage: 24,
 		totalPages: 0,
 		sortBy: 'name',
 	}
 
 	componentWillMount() {
 		const currentPage = parseInt(this.props.location.query.page, 10) || 1
-		const limitPerPage = parseInt(this.props.location.query.limit, 10) || 25
+		const limitPerPage = parseInt(this.props.location.query.limit, 10) || 24
 
 		this.setState({
 			currentPage,
@@ -86,83 +85,27 @@ class CharacterListPage extends React.Component {
 	}
 
 	renderPaginationComponent = () => {
-		let paginationComponent = null
-		if (this.state.characters.length) {
-			const { currentPage } = this.state
-			const prevPage = currentPage <= 1 ? 1 : currentPage - 1
-			const nextPage = currentPage + 1
-			const currentPageMinTwo = currentPage <= 2 ? 1 : currentPage - 2
-			const currentPageMinOne = prevPage
-			const currentPagePlusOne = nextPage
-			const currentPagePlusTwo = currentPage + 2
+		const paginationComponent = (
+			<MainPagination
+				onPageChange={this.fetchCharacterListPage}
+				currentPage={this.state.currentPage}
+				totalPages={this.state.totalPages}
+			/>
+		)
 
-			paginationComponent = (
-				<Col>
-					<Pagination className="CharacterList_pagination">
-						<PaginationItem>
-							<PaginationLink
-								previous
-								href="#"
-								onClick={() => this.fetchCharacterListPage(1)}
-							/>
-						</PaginationItem>
-						<PaginationItem>
-							<PaginationLink
-								href="#"
-								onClick={() => this.fetchCharacterListPage(currentPageMinTwo)}
-							>
-								{currentPage <= 2 ? '..' : currentPage - 2}
-							</PaginationLink>
-						</PaginationItem>
-						<PaginationItem>
-							<PaginationLink
-								href="#"
-								onClick={() => this.fetchCharacterListPage(currentPageMinOne)}
-							>
-								{currentPage <= 1 ? '..' : currentPage - 1}
-							</PaginationLink>
-						</PaginationItem>
-						<PaginationItem active>
-							<PaginationLink href="#">
-								{currentPage}
-							</PaginationLink>
-						</PaginationItem>
-						<PaginationItem>
-							<PaginationLink
-								href="#"
-								onClick={() => this.fetchCharacterListPage(currentPagePlusOne)}
-							>
-								{currentPagePlusOne}
-							</PaginationLink>
-						</PaginationItem>
-						<PaginationItem>
-							<PaginationLink
-								href="#"
-								onClick={() => this.fetchCharacterListPage(currentPagePlusTwo)}
-							>
-								{currentPagePlusTwo}
-							</PaginationLink>
-						</PaginationItem>
-						<PaginationItem>
-							<PaginationLink
-								next
-								href="#"
-								onClick={() => this.fetchCharacterListPage(this.state.totalPages)}
-							/>
-						</PaginationItem>
-					</Pagination>
-				</Col>
-			)
-		}
-		return paginationComponent
+		const component = (this.state.characters.length) ? paginationComponent : null
+		return component
 	}
 
 	render() {
 		return (
-			<Page title="About" >
-				<div className="App-header">
-					<h2>Characters</h2>
-				</div>
+			<Page title="Characters" >
+				<Breadcrumb>
+					<BreadcrumbItem>
+						<Link href="/" to="/">Home</Link>
+					</BreadcrumbItem>
+					<BreadcrumbItem active>Characters</BreadcrumbItem>
+				</Breadcrumb>
 				<Container className="container_main">
 					<Row>
 						{this.renderMainComponent()}

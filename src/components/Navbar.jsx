@@ -1,6 +1,15 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router'
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+import {
+	Collapse,
+	Navbar,
+	NavbarToggler,
+	NavbarBrand,
+	Nav,
+	NavItem,
+	NavLink,
+	Input,
+} from 'reactstrap'
 import './Navbar.css'
 
 class MainNavbar extends React.Component {
@@ -27,9 +36,12 @@ class MainNavbar extends React.Component {
 	render() {
 		return (
 			<Navbar dark fixed="top" expand="md">
-				<NavbarBrand to="/" href="/">Marvel DB</NavbarBrand>
+				<NavbarBrand to="/" href="/">Comic DB</NavbarBrand>
 				<NavbarToggler onClick={this.toggle} aria-label="toggler" />
 				<Collapse isOpen={this.state.isOpen} navbar>
+					<Nav className="mr-auto navbar_search-wrapper" navbar>
+						<Input type="text" placeholder="search" />
+					</Nav>
 					<Nav className="ml-auto" navbar>
 						<NavItem>
 							<Link
@@ -38,15 +50,6 @@ class MainNavbar extends React.Component {
 								to="/"
 							>
 								Home
-							</Link>
-						</NavItem>
-						<NavItem>
-							<Link
-								className={this.getLinkClassName('/about')}
-								href="/about"
-								to="/about"
-							>
-								About
 							</Link>
 						</NavItem>
 						<NavItem>

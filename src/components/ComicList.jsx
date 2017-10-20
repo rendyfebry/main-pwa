@@ -16,19 +16,22 @@ class ComicList extends React.PureComponent {
 
 			return (
 				<Col key={issue.id} xs={12} sm={6} md={4} className="ComicListItem">
-					<LazyLoad height={200} offset={200} once>
-						<img
-							src={thumbUrl}
-							alt={thumbTitle}
-							className="img-responsive"
-						/>
-					</LazyLoad>
-					<p className="text-center">
-						<Link href={charDetailUrl} to={charDetailUrl}>
-							{issue.name}
-						</Link>
-						{issue.issue_number && ` - #${issue.issue_number}`}
-					</p>
+					<div className="ComicListItem_inner">
+						<LazyLoad height={200} offset={200} once>
+							<img
+								src={thumbUrl}
+								alt={thumbTitle}
+								className="img-responsive"
+							/>
+						</LazyLoad>
+						<div className="ComicListItem_title">
+							<Link href={charDetailUrl} to={charDetailUrl}>
+								{issue.name}
+							</Link>
+							<br />
+							{issue.issue_number && `#${issue.issue_number}`}
+						</div>
+					</div>
 				</Col>
 			)
 		})

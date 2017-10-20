@@ -3,6 +3,7 @@ import md5 from 'md5'
 import { withRouter } from 'react-router'
 
 import Page from './Page'
+import SubNav from '../components/SubNav'
 import Loader from '../components/Loader'
 import CharacterDetail from '../components/CharacterDetail'
 
@@ -53,9 +54,9 @@ class CharacterDetailPage extends React.Component {
 	render() {
 		return (
 			<Page title="About">
-				<div className="App-header">
+				<SubNav>
 					<h2>Characters Detail</h2>
-				</div>
+				</SubNav>
 				{this.renderMainContent()}
 			</Page>
 		)

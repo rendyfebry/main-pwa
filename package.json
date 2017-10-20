@@ -12,7 +12,7 @@
 		"build": "react-scripts build",
 		"start:dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
 		"client:dev": "react-scripts start",
-		"server:dev": "nodemon -e js,jsx --ignore lib --ignore dist --exec babel-node server.js",
+		"server:dev": "nodemon -e js,jsx --ignore src --ignore lib --ignore dist --exec babel-node server.js",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
 		"lint": "eslint src",

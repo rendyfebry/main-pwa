@@ -1,25 +1,28 @@
-.ComicListItem {
+.CharacterListItem {
 	margin-top: 15px;
 	position: relative;
 }
 
 @media (min-width: 576px) {
-	.ComicListItem {
+	.CharacterListItem {
 		margin-bottom: 15px;
 	}
 }
 
-.ComicListItem_inner {
+.CharacterListItem_inner {
 	border: 1px solid #d7d7d7;
 	height: 100%;
+	position: relative;
+	box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.3);
 }
 
-.ComicListItem img {
+.CharacterListItem img {
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.ComicListItem_title {
+.CharacterListItem_title {
 	padding: 0.5rem 0;
 	text-align: center;
 	position: absolute;

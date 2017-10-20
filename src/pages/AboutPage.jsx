@@ -1,17 +1,18 @@
 import React from 'react'
 import Page from './Page'
 import logo from '../logo.svg'
+import SubNav from '../components/SubNav'
 
-const HomePage = () => (
-	<Page title="Home">
-		<div className="App-header">
+const AboutPage = () => (
+	<Page title="About">
+		<SubNav>
 			<img src={logo} className="App-logo" alt="logo" />
-			<h2>Home</h2>
-		</div>
+			<h2>About</h2>
+		</SubNav>
 		<p className="App-intro">
-			This is the Home page.
+			This is the About page.
 		</p>
 	</Page>
 )
 
-export default HomePage
+export default AboutPage

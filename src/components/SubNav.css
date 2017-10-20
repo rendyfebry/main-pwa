@@ -1,0 +1,13 @@
+.SubNav {
+	background-color: #fff;
+	height: auto;
+	padding: 10px 20px;
+	color: #d00000;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 2;
+	top: 56px;
+}
