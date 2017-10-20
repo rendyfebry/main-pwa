@@ -9,9 +9,9 @@
 	"proxy": "http://localhost:3001/",
 	"scripts": {
 		"start": "NODE_ENV=production node server.js",
+		"build": "react-scripts build",
 		"start:dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
 		"client:dev": "react-scripts start",
-		"client:build": "react-scripts build",
 		"server:dev": "nodemon -e js,jsx --ignore lib --ignore dist --exec babel-node server.js",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
