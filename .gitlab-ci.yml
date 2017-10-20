@@ -1,0 +1,30 @@
+image: node:8.7.0
+
+stages:
+  - build
+  - deploy
+
+# Instal depedencies
+before_script:
+  - npm install -g yarn
+  - yarn
+
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+    - node_modules/
+
+# Build Production
+build:
+  stage: build
+  script:
+    - yarn build
+
+deploy-to-heroku:
+  stage: deploy
+  environment:
+    name: marvel-db
+    url: https://marvel-db.herokuapp.com
+  script:
+    - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/marvel-db.git master
